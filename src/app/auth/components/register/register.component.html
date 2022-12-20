@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <br><br>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="username">
+                <mat-error>Pole jest wymagane.</mat-error>
+            </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input type="password" matInput formControlName="password">
+        <mat-error>Pole jest wymagane.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input type="password" matInput formControlName="password">
+        <mat-error>Pole jest wymagane.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input type="password" matInput formControlName="password">
+        <mat-error>Pole jest wymagane.</mat-error>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary">Primary</button>
+</form>
