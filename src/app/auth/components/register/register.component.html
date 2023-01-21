@@ -1,27 +1,32 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
     <br><br>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="username">
-                <mat-error>Pole jest wymagane.</mat-error>
-            </mat-form-field>
-    
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-error>Pole jest wymagane.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Imię</mat-label>
+        <input matInput formControlName="name">
+        <mat-error>Pole jest wymagane.</mat-error>
+
+    </mat-form-field>    <mat-form-field appearance="outline">
+        <mat-label>Nazwisko</mat-label>
+        <input matInput formControlName="surname">
+        <mat-error>Pole jest wymagane.</mat-error>
+    </mat-form-field>
+
     <mat-form-field appearance="outline">
         <mat-label>Hasło</mat-label>
         <input type="password" matInput formControlName="password">
         <mat-error>Pole jest wymagane.</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
-        <mat-label>Hasło</mat-label>
-        <input type="password" matInput formControlName="password">
-        <mat-error>Pole jest wymagane.</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Hasło</mat-label>
-        <input type="password" matInput formControlName="password">
+        <mat-label>Potwórz hasło</mat-label>
+        <input type="confimPassword" matInput formControlName="password">
         <mat-error>Pole jest wymagane.</mat-error>
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary">Primary</button>
+    <button mat-raised-button color="primary" sumbit>Zarejestruj się </button>
 </form>

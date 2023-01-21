@@ -1,0 +1,86 @@
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  .example-element-description {
+    margin-bottom: 10px;
+  }
+  .example-element-diagram {
+    border: 2px solid black;
+    font-weight: lighter;
+    margin: 0 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .leftPannel {
+    width: 48%;
+    margin-left: 1%;
+
+  }
+  
+  .rightPannel {
+    width: 48%;
+    margin-left: 1%;
+
+    flex: 1;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+  #aaaa > .mat-mdc-table .mdc-data-table__header-row { 
+    display: none;
+  }
+  .mat-mdc-form-field-subscript-wrapper .mat-mdc-form-field-bottom-align .ng-tns-c153-7 {
+    display: none !important;
+   }
+
+  .mat-mdc-table    {
+    width: 100%;
+    max-height: 320px;
+    overflow: auto; 
+    }
+    #aaaa .mat-column-name {
+        width: 100%;
+    }
+
+  @media only screen and (max-width: 600px) {
+    .row {
+      flex-direction: column;
+    }
+    .leftPannel {
+      width: 100%;
+      margin-right: 0;
+    } 
+  }

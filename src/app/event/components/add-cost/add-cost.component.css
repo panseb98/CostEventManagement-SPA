@@ -1,0 +1,42 @@
+@media only screen and (max-width: 600px) {
+    mat-form-field {
+        width: 100%;
+    }
+
+    mat-card-actions {
+        margin-left: 10px;
+    }
+}
+
+@media only screen and (min-width: 601px) {
+    mat-form-field {
+        width: 45%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    mat-card {
+        width: 80%;
+    }
+
+    mat-card-actions {
+        margin-left: 20px;
+    }
+
+}
+
+
+table {
+    width: 100%;
+}
+mat-card-actions {
+    margin-top: 20px;
+}
+
+.example-container {
+    margin-right: 110px;
+    margin-left: 10px;
+    width: 100%;
+    overflow: auto;
+    max-height: 400px;
+}

@@ -1,0 +1,82 @@
+<app-page-header header="Nowy koszt" icon="add_circle">
+
+</app-page-header>
+
+<div style="padding: 0 20px">
+  <mat-card style="width: 100%;">
+    <mat-card-header>
+      <mat-card-title>Wprowadź dane kosztu</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <br>
+      <br>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Wydarzenie</mat-label>
+        <mat-select (selectionChange)="doSomething($event)" formControlName="eventId">
+          <mat-option *ngFor="let event of eventDataSource" [value]="event.id">
+            {{event.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Nazwa kosztu</mat-label>
+        <input formControlName="name" matInput placeholder="Placeholder">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Wartość</mat-label>
+        <input matInput formControlName="value" type="number"  placeholder="Placeholder">
+        <p *ngIf="showRecalculate"> <br>Wartość po przeliczeniu na walutę wydarzenia <b>{{ reacalculatedData() }}</b></p>
+
+      </mat-form-field>
+
+      <app-currency-control class="form-control" (newItemEvent)="test123($event)" [formControl]="getCurrencyControl"></app-currency-control>
+      
+    </form>
+      <mat-card-title>Wprowadź dane kosztu</mat-card-title>
+
+      <div class="example-container mat-elevation-z8">
+
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+      
+        <!-- Position Column -->
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="selection.toggle(row)">
+        </tr>
+      </table>
+    </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="submit()">Zapisz</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

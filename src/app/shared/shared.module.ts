@@ -34,7 +34,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableResponsiveDirective } from './mat-table-responsive/mat-table-responsive.direvtive';
 @NgModule({
+  declarations: [MatTableResponsiveDirective],
   imports: [
     MatAutocompleteModule,
     MatBadgeModule,
@@ -111,7 +113,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatTreeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableResponsiveDirective
   ],
 })
 export class SharedModule { }

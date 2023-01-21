@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth/services/auth.service';
 import { MenuItem } from './menu.model';
 
 @Component({
@@ -9,49 +11,38 @@ import { MenuItem } from './menu.model';
 })
 export class LayoutComponent {
   opened = true;
-
+  constructor(private router: Router) {}
   toggle(): void {
     this.opened = !this.opened;
   }
+
+
 
   public menuItems: MenuItem[] = [
     {
       title: 'Lista twoich wydarzeń',
       icon: 'home',
-      link: '/sales',
+      link: '/event',
       color: '#ff7f0e',
     },
     {
       title: 'Dodaj nowe wydarzenie',
       icon: 'home',
-      link: '/home',
+      link: '/event/add',
       color: '#ff7f0e',
     },
     {
-      title: 'Dodaj paragon',
+      title: 'Dołącz do wydarzenia',
       icon: 'home',
-      link: '/chart',
+      link: '/event/join',
       color: '#ff7f0e',
     },
     {
-      title: 'Statistics',
-      icon: 'bar_chart',
+      title: 'Dodaj koszty',
+      icon: 'home',
+      link: '/event/cost',
       color: '#ff7f0e',
-      subMenu: [
-        {
-          title: 'Sales',
-          icon: 'money',
-          link: '/sales',
-          color: '#ff7f0e',
-        },
-        {
-          title: 'Chart',
-          icon: 'people',
-          color: '#ff7f0e',
-          link: '/chart',
-        },
-      ],
-    },
+    }
   ];
 
 }
