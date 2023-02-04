@@ -2,6 +2,10 @@ import { CurrencyDTO } from "./CurrencyDTO";
 import { SimpleUserVM } from "./SimpleUser";
 
 export class EventDTO {
+    constructor() {
+        this.id = 0;
+        this.automaticConvert = true;
+    }
     id : number | undefined;
     code : string | undefined;
     name : string | undefined;

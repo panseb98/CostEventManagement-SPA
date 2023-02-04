@@ -16,7 +16,7 @@
             <mat-label>Nazwa wydarzenia</mat-label>
             <input matInput formControlName="name" placeholder="Nazwa wydarzenia">
           </mat-form-field>
-          <app-currency-control class="form-control" [formControl]="getCurrencyControl"></app-currency-control>
+          <app-currency-control class="form-control" [formControl]="getCurrencyControl" (newItemEvent)="test($event)"></app-currency-control>
         </div>
         <br>
       </form>

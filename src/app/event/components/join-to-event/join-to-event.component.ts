@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EventClientService } from '../../services/event-client.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { EventClientService } from '../../services/event-client.service';
 export class JoinToEventComponent {
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private _eventClient: EventClientService) {
+  constructor(private fb: FormBuilder, private _eventClient: EventClientService, private router: Router) {
     this.form = this.fb.group({
       code : ['', Validators.required]
     });
@@ -22,6 +23,8 @@ export class JoinToEventComponent {
 
   public async submit(): Promise<void> {
     const eventModel = this.form.value;
-    this._eventClient.joinToEvent(eventModel.code as string);
+    const eventId = await this._eventClient.joinToEvent(eventModel.code as string);
+    this.router.navigate(['/event/edit/' + eventId]);
+
   }
 }

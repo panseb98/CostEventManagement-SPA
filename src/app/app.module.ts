@@ -66,7 +66,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     AuthModule,
     EventModule,
     JwtModule.forRoot({
