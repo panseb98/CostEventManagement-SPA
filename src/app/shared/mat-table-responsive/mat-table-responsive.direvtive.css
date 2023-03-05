@@ -49,9 +49,14 @@
     border: none;
  }
   .mat-mdc-table[matTableResponsive] .mat-mdc-row:not(:last-of-type) td:last-of-type {
-    border-bottom: 0.5rem solid #fafafa;
+    border-bottom: 1rem solid #fafafa;
  }
   .mat-mdc-card .mat-mdc-table[matTableResponsive], .mat-mdc-expansion-panel .mat-mdc-table[matTableResponsive] {
     border: 0.5rem solid #fafafa;
+ }
+ .mdc-data-table__row:last-child .mdc-data-table__cell {
+  border-bottom: solid !important;
+  border-bottom-width: 1px !important;
+  border-bottom-color: rgba(0, 0, 0, 0.12) !important;
  }
 }

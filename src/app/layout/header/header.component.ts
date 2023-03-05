@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -6,21 +7,12 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
+  @Output() public menuToggled = new EventEmitter<boolean>();
 
-  @Output() menuToggled = new EventEmitter<boolean>();
-  constructor(private authService: AuthService) {}
-  async ngOnInit(): Promise<void> {
-    const res = this.authService.getUsername();
-    console.log(res);
-  }
-
-  user: string = 'Enea';
+  public constructor(private authService: AuthService, public deviceService: DeviceDetectorService) {}
   
-  // constructor(private authService: AuthService) { }
-
-  logout(): void {
+  public logout(): void {
     this.authService.logout();
   }
-
 }

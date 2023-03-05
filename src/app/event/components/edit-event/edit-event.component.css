@@ -83,4 +83,24 @@ table {
       width: 100%;
       margin-right: 0;
     } 
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .center {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  
+  /* +++++++ STYLES +++++++ */
+  .wrapper {
+    margin-top: 50%;
+  }
+  .inner {
+    color: white;
+    padding: 12px;
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ApplicationRef, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, startWith } from 'rxjs';
@@ -17,39 +17,37 @@ export class AddEventComponent {
   public options = new Array<CurrencyDTO>();
   public filteredOptions: any;
 
-  constructor(private fb: FormBuilder, private _eventClient: EventClientService, private router: Router) {
+  public constructor(private fb: FormBuilder, private _eventClient: EventClientService, private router: Router) {
     this.form = this.fb.group({
       name : ['', [Validators.required]],
       defaultCurrencyId : this.fb.control("", [Validators.required])
     });
   }
 
-
-
-  async ngOnInit() {
+  public ngOnInit() {
 
   }
 
-  get getCurrencyControl(): FormControl {
+  public get getCurrencyControl(): FormControl {
     return (this.form.get('defaultCurrencyId') as FormControl)
   }
 
-  test(a: any) {
-    this.form.get('defaultCurrencyId')?.setValue(a);
+  public currencyChanged(newCurrency: any) {
+    this.form.get('defaultCurrencyId')?.setValue(newCurrency);
   }
 
   public async submit(): Promise<void> {
-    const eventModel = new EventDTO();
-    eventModel.defaultCurrencyId = this.form.value.defaultCurrencyId.id;
-    eventModel.defaultCurrencyCode = this.form.value.defaultCurrencyId.code;
-    eventModel.users = new Array<SimpleUserVM>();
-    eventModel.name = this.form.value.name;
-    eventModel.code = '';
-    console.log(eventModel);
+    const formValues = this.form.value;
+
+    const eventModel = { 
+      defaultCurrencyId: formValues.defaultCurrencyId.id,
+      defaultCurrencyCode: formValues.defaultCurrencyId.code,
+      users: new Array<SimpleUserVM>(),
+      name: formValues.name,
+      code: ''
+    } as EventDTO;
+   
     const eventId = await this._eventClient.addEvent(eventModel);
     this.router.navigate(['/event/edit/' + eventId]);
-
   }
-  
-
 }

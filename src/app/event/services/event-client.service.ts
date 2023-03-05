@@ -7,6 +7,7 @@ import { CurrencyDTO } from '../models/CurrencyDTO';
 import { EventDTO } from '../models/EventDTO';
 import { EventVM } from '../models/EventVM';
 import { CostDTO } from '../models/CostDTO';
+import { SettleUserEvent } from '../models/SettleUserEvent';
 
 @Injectable({
     providedIn: 'root'
@@ -76,14 +77,14 @@ export class EventClientService {
             ));
     }
 
-    addCost(cost: CostDTO): Promise<number> {
+    addCost(cost: CostDTO): Promise<boolean> {
         return new Promise((res, rej) => this.http
             .post<number>(
                 `${environment.api}/Event/AddCost`,
                 cost
             ).subscribe(
                 (x) => {
-                    res(x);
+                    res(true);
                 },
                 (err: HttpErrorResponse) => {
                     console.log(err);
@@ -100,6 +101,22 @@ export class EventClientService {
                 (x) => {
 
                     res(x);
+                },
+                (err: HttpErrorResponse) => {
+                    console.log(err);
+
+                }
+            ));
+    }
+
+    settleUser(event: SettleUserEvent): Promise<boolean> {
+        return new Promise((res, rej) => this.http
+            .post<void>(
+                `${environment.api}/Event/SettleUser`,
+                event
+            ).subscribe(
+                (x) => {
+                    res(true);
                 },
                 (err: HttpErrorResponse) => {
                     console.log(err);

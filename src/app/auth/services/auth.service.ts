@@ -20,7 +20,7 @@ export class AuthService {
 
   public login(token: string): void {
     localStorage.setItem('token', token);
-    this.router.navigateByUrl('/');
+    this.router.navigate(['/event']);
   }
 
   public logout(): void {

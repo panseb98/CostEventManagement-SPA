@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { AuthService } from '../auth/services/auth.service';
 import { MenuItem } from './menu.model';
 
@@ -9,15 +10,7 @@ import { MenuItem } from './menu.model';
   styleUrls: ['./layout.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LayoutComponent {
-  opened = true;
-  constructor(private router: Router) {}
-  toggle(): void {
-    this.opened = !this.opened;
-  }
-
-
-
+export class LayoutComponent implements OnInit {
   public menuItems: MenuItem[] = [
     {
       title: 'Lista twoich wydarzeń',
@@ -45,4 +38,23 @@ export class LayoutComponent {
     }
   ];
 
+  public opened = true;
+
+  public constructor(public deviceService: DeviceDetectorService) { }
+
+  public ngOnInit(): void {
+    if (this.deviceService.isMobile()) {
+      this.opened = false;
+    }
+  }
+
+  public toggle(): void {
+    this.opened = !this.opened;
+  }
+
+  public addItem(): void {
+    if (this.deviceService.isMobile()) {
+      this.opened = false;
+    }
+  }
 }

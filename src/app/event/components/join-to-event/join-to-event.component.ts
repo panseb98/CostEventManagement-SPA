@@ -11,20 +11,15 @@ import { EventClientService } from '../../services/event-client.service';
 export class JoinToEventComponent {
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private _eventClient: EventClientService, private router: Router) {
+  public constructor(private fb: FormBuilder, private _eventClient: EventClientService, private router: Router) {
     this.form = this.fb.group({
       code : ['', Validators.required]
     });
   }
   
-  async ngOnInit() {
-
-  }
-
   public async submit(): Promise<void> {
     const eventModel = this.form.value;
-    const eventId = await this._eventClient.joinToEvent(eventModel.code as string);
+    const eventId = await this._eventClient.joinToEvent(eventModel.code);
     this.router.navigate(['/event/edit/' + eventId]);
-
   }
 }

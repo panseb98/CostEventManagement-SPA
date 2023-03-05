@@ -51,7 +51,10 @@ const routes: Routes = [
       {
         path: 'event/cost',
         component: AddCostComponent
-      }
+      },      {
+        path: 'event/cost/:eventId/:currencyId',
+        component: AddCostComponent
+      },
     ]
   },
   {

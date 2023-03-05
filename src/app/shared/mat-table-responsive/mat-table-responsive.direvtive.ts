@@ -28,9 +28,9 @@ import {
       this.tbodyChanged$.next(true)
     );
   
-    constructor(private table: ElementRef, private renderer: Renderer2) {}
+    public constructor(private table: ElementRef, private renderer: Renderer2) {}
   
-    ngOnInit() {
+    public ngOnInit() {
       this.thead = this.table.nativeElement.querySelector('thead');
       this.tbody = this.table.nativeElement.querySelector('tbody');
   
@@ -41,11 +41,7 @@ import {
       this.tbodyObserver.observe(this.tbody as HTMLTableSectionElement, { childList: true });
     }
   
-    ngAfterViewInit() {
-      /**
-       * Set the "data-column-name" attribute for every body row cell, either on
-       * thead row changes (e.g. language changes) or tbody rows changes (add, delete).
-       */
+    public ngAfterViewInit() {
       combineLatest([this.theadChanged$, this.tbodyChanged$])
         .pipe(
           mapTo([(this.thead as HTMLTableSectionElement).rows.item(0), (this.thead as HTMLTableSectionElement).rows]),
@@ -68,11 +64,9 @@ import {
             )
           )
         );
-
-        console.log('dupa');
     }
   
-    ngOnDestroy(): void {
+    public ngOnDestroy(): void {
       this.theadObserver.disconnect();
       this.tbodyObserver.disconnect();
   

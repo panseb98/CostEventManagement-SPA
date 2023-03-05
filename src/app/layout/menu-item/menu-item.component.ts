@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from '../menu.model';
 
 @Component({
@@ -7,14 +7,16 @@ import { MenuItem } from '../menu.model';
   styleUrls: ['./menu-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuItemComponent implements OnInit {
+export class MenuItemComponent {
   @Input() menu: MenuItem[];
+  @Output() newItemEvent = new EventEmitter<void>();
 
-  constructor() {
+  public constructor() {
     this.menu = [];
    }
 
-  ngOnInit(): void {
+  public menuChanged(): void {
+    this.newItemEvent.emit();
   }
 
 }

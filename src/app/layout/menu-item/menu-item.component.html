@@ -2,7 +2,7 @@
     <ng-container *ngFor="let item of menu">
         <!-- If the item doesn't have children show it as list item-->
         <ng-container *ngIf="item.subMenu === undefined">
-            <mat-list-item *ngIf="item.title" [routerLink]="item.link" routerLinkActive="active"
+            <mat-list-item (click)="menuChanged()" *ngIf="item.title" [routerLink]="item.link" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">
 
                 <div mat-line>{{ item.title }}</div>

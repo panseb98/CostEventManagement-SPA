@@ -5,13 +5,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './page-header.component.html',
   styleUrls: ['./page-header.component.css']
 })
-export class PageHeaderComponent implements OnInit {
+export class PageHeaderComponent {
   @Input() icon?: string;
   @Input() header?: string;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  public constructor() { }
 }

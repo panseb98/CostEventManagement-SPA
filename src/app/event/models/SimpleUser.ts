@@ -1,4 +1,4 @@
 export class SimpleUserVM {
-    id : number | undefined;
-    name : string | undefined;
+    id : number;
+    name : string;
 }

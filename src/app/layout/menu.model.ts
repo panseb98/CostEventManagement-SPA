@@ -3,9 +3,7 @@ export interface MenuItem {
     icon?: string;
     link?: string;
     color?: string;
-  
     hideFor?: string;
-  
     expanded?: boolean;
     subMenu?: MenuItem[];
 }  

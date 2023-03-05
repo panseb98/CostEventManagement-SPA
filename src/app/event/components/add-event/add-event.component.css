@@ -6,24 +6,18 @@
     mat-card-actions {
         margin-left: 10px;
     }
+
+    button{
+        width: 100%;
+    }
 }
 
 @media only screen and (min-width: 601px) {
-    mat-form-field, .form-control {
-        width: 45%;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    
-    mat-card {
-        width: 80%;
+    mat-form-field {
+        width: 48%;
     }
 
     mat-card-actions {
         margin-left: 20px;
     }
-}
-
-mat-card-actions {
-    margin-top: 20px;
 }

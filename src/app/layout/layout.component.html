@@ -1,8 +1,8 @@
 <app-header (menuToggled)="toggle()"></app-header>
 
 <mat-drawer-container>
-  <mat-drawer mode="side" [opened]="opened">
-    <app-menu-item [menu]="menuItems"></app-menu-item>
+  <mat-drawer disableClose="deviceService.isMobile()" mode="side" [opened]="opened">
+    <app-menu-item (newItemEvent)="addItem()" [menu]="menuItems"></app-menu-item>
   </mat-drawer>
 
   <mat-drawer-content [class.margin-left]="opened">

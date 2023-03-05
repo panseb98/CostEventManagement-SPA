@@ -4,11 +4,20 @@
   height: 100%;
 }
 
-mat-drawer {
-  min-width: 200px;
-  max-width: 300px;
+
+@media only screen and (max-width: 600px) {
+  mat-drawer {
+    width: 100%;
+  }
 }
 
+@media only screen and (min-width: 601px) {
+  mat-drawer {
+    min-width: 200px;
+    max-width: 300px;
+  }
+
+}
 .margin-left {
   margin-left: 300px;
 }

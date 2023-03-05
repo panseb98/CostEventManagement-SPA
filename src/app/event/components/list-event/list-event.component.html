@@ -1,67 +1,62 @@
-<app-page-header header="Lista twoich wydarzeń" icon="list">
+<div *ngIf="isNotBusy | async; else loading">
+    <app-page-header header="Lista twoich wydarzeń" icon="list">
 
-</app-page-header>
+    </app-page-header>
 
-<div style="padding: 0 20px">
+    <div style="padding: 0 20px">
+        <table mat-table matTableResponsive [dataSource]="dataSource">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> Lp. </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    <div class="mobile-column"><b class="header-mobile"> Lp. </b> {{i + 1}}</div>
+                    <div class="desktop-column">{{i + 1}}</div>
+                </td>
+            </ng-container>
 
-    <table mat-table matTableResponsive [dataSource]="dataSource" >
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nazwa wydarzenia </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="mobile-column"><b class="header-mobile">Nazwa wydarzenia:</b> {{element.name}}</div>
+                    <div class="desktop-column">{{element.name}}</div>
+                </td>
+            </ng-container>
 
-        <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
+            <ng-container matColumnDef="code">
+                <th mat-header-cell *matHeaderCellDef> Kod wydarzenia </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="mobile-column"><b class="header-mobile">Kod wydarzenia:</b>{{element.code}}</div>
+                    <div class="desktop-column">{{element.code}}</div>
+                </td>
+            </ng-container>
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef> Lp. </th>
-            <td mat-cell *matCellDef="let element; let i = index;">
-                <div class="mobile-column"><b class="header-mobile"> Lp. </b>   {{i + 1}}</div>
-                <div class="desktop-column">{{i + 1}}</div>
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="defaultCurrencyCode">
+                <th mat-header-cell *matHeaderCellDef> Waluta </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="mobile-column"><b class="header-mobile">Waluta:</b>{{element.defaultCurrencyCode}}</div>
+                    <div class="desktop-column">{{element.defaultCurrencyCode}}</div>
+                </td>
+            </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Nazwa wydarzenia </th>
-            <td mat-cell *matCellDef="let element">
-                 <div class="mobile-column"><b class="header-mobile">Nazwa wydarzenia:</b> {{element.name}}</div> 
-                 <div class="desktop-column">{{element.name}}</div> 
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="balance">
+                <th mat-header-cell *matHeaderCellDef> Bilans </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="mobile-column"><b class="header-mobile">Bilans:</b>0</div>
+                    <div class="desktop-column">0</div>
+                </td>
+            </ng-container>
 
-        <ng-container matColumnDef="code">
-            <th mat-header-cell *matHeaderCellDef> Kod wydarzenia </th>
-            <td mat-cell *matCellDef="let element">
-                <div class="mobile-column"><b class="header-mobile">Kod wydarzenia:</b>{{element.code}}</div>
-                <div class="desktop-column">{{element.code}}</div> 
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Akcje </th>
+                <td mat-cell *matCellDef="let element"> <button mat-button routerLink="/event/edit/{{element.id}}">
+                        <mat-icon>edit</mat-icon>
+                    </button> </td>
+            </ng-container>
 
-        <ng-container matColumnDef="defaultCurrencyCode">
-            <th mat-header-cell *matHeaderCellDef> Waluta </th>
-            <td mat-cell *matCellDef="let element">
-                <div class="mobile-column"><b class="header-mobile">Waluta:</b>{{element.defaultCurrencyCode}}</div>
-                <div class="desktop-column">{{element.defaultCurrencyCode}}</div> 
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="balance">
-            <th mat-header-cell *matHeaderCellDef> Bilans </th>
-            <td mat-cell *matCellDef="let element">
-                <div class="mobile-column"><b class="header-mobile">Bilans:</b>0</div>
-                <div class="desktop-column">0</div> 
-            </td>
-        </ng-container>
-        <!-- Weight Column -->
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Akcje </th>
-            <td mat-cell *matCellDef="let element"> <button mat-button routerLink="/event/edit/{{element.id}}"
-                    (click)="redirectToEvent(element.position)">
-                    <mat-icon>edit</mat-icon>
-                </button> </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
 </div>
+<ng-template #loading>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>

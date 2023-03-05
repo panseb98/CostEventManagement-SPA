@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subject } from 'rxjs';
 import { EventDTO } from '../../models/EventDTO';
 import { EventClientService } from '../../services/event-client.service';
 export interface PeriodicElement {
@@ -33,19 +34,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ListEventComponent implements OnInit {
   public isMobile = isMobile();
-  displayedColumns: string[] = ['position', 'name', 'code', 'defaultCurrencyCode', 'balance', 'actions'];
- // dataSource = new Array<EventDTO>();
-  dataSource = new MatTableDataSource<EventDTO>();
+  public displayedColumns: string[] = ['position', 'name', 'code', 'defaultCurrencyCode', 'balance', 'actions'];
+  public isNotBusy = new Subject<boolean>();
+  public dataSource = new MatTableDataSource<EventDTO>();
 
-  constructor(private _eventService: EventClientService) {
+  public constructor(private _eventService: EventClientService) {
   }
 
-  async ngOnInit(): Promise<void> {
+  public async ngOnInit(): Promise<void> {
     this.dataSource.data = await this._eventService.getEvents();
-    console.log(this.dataSource);
-
-  }
-  public redirectToEvent(id: number) {
-    
+    this.isNotBusy.next(true);
   }
 }

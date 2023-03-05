@@ -10,15 +10,13 @@ import { EventClientService } from '../../services/event-client.service';
   styleUrls: ['./currency-control.component.css']
 })
 export class CurrencyControlComponent implements OnInit, ControlValueAccessor {
-  @Output() newItemEvent = new EventEmitter<number>();
+  @Output() public newItemEvent = new EventEmitter<number>();
 
-  formControl = new FormControl();
-
-
+  public formControl = new FormControl();
   public options = new Array<CurrencyDTO>();
   public filteredOptions: any;
 
-  constructor(private _eventClient: EventClientService, @Optional() private ngControl: NgControl) {
+  public constructor(private _eventClient: EventClientService, @Optional() private ngControl: NgControl) {
 		if (this.ngControl) {
 			this.ngControl.valueAccessor = this;
 		}
@@ -28,10 +26,7 @@ export class CurrencyControlComponent implements OnInit, ControlValueAccessor {
     this.options = await this._eventClient.getCurrencies();
     this.filteredOptions = this.formControl.valueChanges.pipe(
       startWith(''),
-      map(value => {
-        const name = value;
-        return name ? this._filter(name as string) : this.options.slice();
-      }),
+      map(value => value ? this._filter(value) : this.options.slice()),
     );
     this.formControl.setValue(this.options.find(x => x.id === this.formControl.value))
   }
@@ -40,10 +35,14 @@ export class CurrencyControlComponent implements OnInit, ControlValueAccessor {
     return user && user.name ? user.name : '';
   }
 
-  private _filter(name: string): CurrencyDTO[] {
-    const filterValue = name.toLowerCase();
+  private _filter(name: any): CurrencyDTO[] {
+    if (typeof name === 'string') {
+      const filterValue = name.toLowerCase();
 
-    return this.options.filter(option => (option.name as string).toLowerCase().includes(filterValue));
+      return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+    }
+
+    return this.options;
   }
 
   onSelectionChange(event: any){

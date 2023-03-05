@@ -3,40 +3,32 @@
         width: 100%;
     }
 
+    button {
+      width: 100%;
+    }
+
     mat-card-actions {
-        margin-left: 10px;
+      padding: initial;
     }
 }
 
 @media only screen and (min-width: 601px) {
     mat-form-field {
-        width: 45%;
+        width: 48%;
         margin-left: 10px;
         margin-right: 10px;
     }
-    
-    mat-card {
-        width: 80%;
-    }
 
-    mat-card-actions {
-        margin-left: 20px;
-    }
-
+    .mat-mdc-table    {
+      max-width: 98%;
+      min-width: 98%;
+      margin-left: 10px;
+      margin-right: 10px;
+      max-height: 320px;
+      overflow: auto; 
+      }
 }
 
 
-table {
-    width: 100%;
-}
-mat-card-actions {
-    margin-top: 20px;
-}
-
-.example-container {
-    margin-right: 110px;
-    margin-left: 10px;
-    width: 100%;
-    overflow: auto;
-    max-height: 400px;
-}
+  
+  

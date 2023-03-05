@@ -1,19 +1,17 @@
-<form id="formte" [formGroup]="form" (ngSubmit)="submit()">
+<form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
     <br><br>
     <p>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput formControlName="username">
-            <mat-icon matPrefix class="my-icon">account_circle</mat-icon>
             <mat-error>Pole jest wymagane.</mat-error>
         </mat-form-field>
     </p>
     <mat-form-field appearance="outline">
         <mat-label>Hasło</mat-label>
         <input type="password" matInput formControlName="password">
-        <mat-icon matPrefix class="my-icon">build</mat-icon>
         <mat-error>Pole jest wymagane.</mat-error>
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary">Primary</button>
+    <button mat-raised-button color="primary">Zaloguj się</button>
 </form>

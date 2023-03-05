@@ -1,5 +1,5 @@
 @media only screen and (max-width: 600px) {
-    mat-form-field {
+    mat-form-field,.form-control {
         width: 100%;
     }
 
@@ -9,8 +9,8 @@
 }
 
 @media only screen and (min-width: 601px) {
-    mat-form-field {
-        width: 45%;
+    mat-form-field, .form-control {
+        width: 48%;
         margin-left: 10px;
         margin-right: 10px;
     }
@@ -22,5 +22,8 @@
     mat-card-actions {
         margin-left: 20px;
     }
+}
 
+mat-card-actions {
+    margin-top: 20px;
 }

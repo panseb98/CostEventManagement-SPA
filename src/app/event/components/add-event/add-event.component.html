@@ -1,9 +1,11 @@
-<app-page-header header="Dodawanie nowego wydarzenia" icon="add_circle">
+<app-page-header header="Nowe wydarzenie" icon="add_circle">
 
 </app-page-header>
 
-<div style="padding: 0 20px">
-  <mat-card>
+<div class="card-body">
+  <div class="row">
+    <div class="col">
+    <mat-card class="card">
     <mat-card-header>
       <mat-card-title>Wypełnij formularz podając dane wydarzenia</mat-card-title>
     </mat-card-header>
@@ -16,15 +18,14 @@
             <mat-label>Nazwa wydarzenia</mat-label>
             <input matInput formControlName="name" placeholder="Nazwa wydarzenia">
           </mat-form-field>
-          <app-currency-control class="form-control" [formControl]="getCurrencyControl" (newItemEvent)="test($event)"></app-currency-control>
+          <app-currency-control [formControl]="getCurrencyControl" (newItemEvent)="currencyChanged($event)"></app-currency-control>
         </div>
-        <br>
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <div >
         <button mat-raised-button color="primary" (click)="submit()">Zapisz</button>
-      </div>
     </mat-card-actions>
   </mat-card>
+    </div>
+  </div>
 </div>

@@ -2,77 +2,78 @@
 
 </app-page-header>
 
-<div style="padding: 0 20px">
-  <mat-card style="width: 100%;">
-    <mat-card-header>
-      <mat-card-title>Wprowadź dane kosztu</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <br>
-      <br>
-      <form [formGroup]="form" (ngSubmit)="submit()">
+<div class="card-body">
+  <div class="row">
+    <div class="col">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>Wprowadź dane kosztu</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <br>
+          <form [formGroup]="form" (ngSubmit)="submit()">
 
-      <mat-form-field appearance="outline">
-        <mat-label>Wydarzenie</mat-label>
-        <mat-select (selectionChange)="doSomething($event)" formControlName="eventId">
-          <mat-option *ngFor="let event of eventDataSource" [value]="event.id">
-            {{event.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      
-      <mat-form-field appearance="outline">
-        <mat-label>Nazwa kosztu</mat-label>
-        <input formControlName="name" matInput placeholder="Placeholder">
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Nazwa kosztu</mat-label>
+              <input formControlName="name" matInput placeholder="Placeholder">
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Wartość</mat-label>
-        <input matInput formControlName="value" type="number"  placeholder="Placeholder">
-        <p *ngIf="showRecalculate"> <br>Wartość po przeliczeniu na walutę wydarzenia <b>{{ reacalculatedData() }}</b></p>
+            <mat-form-field appearance="outline">
+              <mat-label>Wydarzenie</mat-label>
+              <mat-select (selectionChange)="selectionChanged($event)" formControlName="eventId">
+                <mat-option *ngFor="let event of eventDataSource" [value]="event.id">
+                  {{event.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Wartość</mat-label>
+              <input matInput formControlName="value" type="number" placeholder="Placeholder">
+              <p *ngIf="showRecalculate"> <br>Wartość po przeliczeniu na walutę wydarzenia <b>{{ recalculatedData()
+                  }}</b></p>
 
-      <app-currency-control class="form-control" (newItemEvent)="test123($event)" [formControl]="getCurrencyControl"></app-currency-control>
-      
-    </form>
-      <mat-card-title>Uczesnicy</mat-card-title>
+            </mat-form-field>
 
-      <div class="example-container mat-elevation-z8">
+            <app-currency-control (newItemEvent)="currencyChanged($event)"
+              [formControl]="getCurrencyControl"></app-currency-control>
 
-      <table mat-table [dataSource]="dataSource">
+          </form>
 
-        <ng-container matColumnDef="select">
-          <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? toggleAllRows() : null"
-                          [checked]="selection.hasValue() && isAllSelected()"
-                          [indeterminate]="selection.hasValue() && !isAllSelected()"
-                          [aria-label]="checkboxLabel()">
-            </mat-checkbox>
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()"
-                          (change)="$event ? selection.toggle(row) : null"
-                          [checked]="selection.isSelected(row)"
-                          [aria-label]="checkboxLabel(row)">
-            </mat-checkbox>
-          </td>
-        </ng-container>
-      
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Imie i nazwisko </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-        
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-            (click)="selection.toggle(row)">
-        </tr>
-      </table>
+
+          <mat-card-title>Uczetnicy</mat-card-title>
+            <br>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+              <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Imie i nazwisko </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+              </tr>
+            </table>
+        <mat-card-actions>
+          <button mat-raised-button style="margin-right: 10px;" color="primary" (click)="submit()">Zapisz</button>
+          <button mat-raised-button color="warn" (click)="submit()">Anuluj</button>
+        </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
     </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="submit()">Zapisz</button>
-    </mat-card-actions>
-  </mat-card>
+  </div>
 </div>
